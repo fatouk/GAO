@@ -1,0 +1,71 @@
+<p-fieldset legend="Modification Ordinateur!">
+    <form *ngIf="ordinateur && ordinateurUpdateForm" [formGroup]="ordinateurUpdateForm">
+        <div class="p-fluid p-grid">
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Code</label>
+                    <input id="float-input" formControlName="code" required maxlength="240" type="text" class="form-control" id="nom" name="code" pInputText [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
+                    <div class="alert alert-danger" *ngIf="(submitted || code!.touched && code!.errors)">
+                        <div class="required" [hidden]="code!.errors?.required">Code est requis</div>
+                        <div class="required" [hidden]="code!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Marque</label>
+                    <input type="text" name="marque" pInputText formControlName="marque" class="form-control" required maxlength="240">
+                    <div class="alert alert-danger" *ngIf="(submitted || marque!.touched && marque!.errors)">
+                        <div class="required" [hidden]="marque!.errors?.required">Marque est requise</div>
+                        <div class="required" [hidden]="marque!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Taille Disque</label>
+                    <input id="float-input" type="text" formControlName="capacite_disque" required maxlength="240" class="form-control" id="capacite_disque" name="capacite_disque" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || capacite_disque!.touched && capacite_disque!.errors)">
+                        <div class="required" [hidden]="capacite_disque!.errors?.required">La taille est requise</div>
+                        <div class="required" [hidden]="capacite_disque!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Memoire RAM</label>
+                    <input id="float-input" type="text" formControlName="ram" required maxlength="240" class="form-control" id="ram" name="ram" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || ram!.touched && ram!.errors)">
+                        <div class="required" *ngIf="ram!.errors?.required">Memoire RAM est requis</div>
+                        <div class="required" [hidden]="ram!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Etat</label>
+                    <p-checkbox formControlName="etat" class="form-control2" [binary]="true" id="etat" name="etat"></p-checkbox>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Status</label>
+                    <p-dropdown id="float-input" formControlName="status" name="status" [options]="statuslist" class="form-control form-control2" placeholder="Selectionner Status" [showClear]="true"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <button pButton pRipple type="button" label="Valider" (click)="updateOrdinateur(ordinateur.id,ordinateur)" class="p-button-rounded" style="background: #ff7900;border: #FF7900;"></button>
+</p-fieldset>

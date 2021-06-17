@@ -1,0 +1,80 @@
+<p-toast key="tc" position="top-center"></p-toast>
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="createReservationForm()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="showDialog(reservationdelete.id)" [disabled]="!selectReservation || !selectReservation.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="reservationlist" [rows]="10" [paginator]="true" [globalFilterFields]="['utilisateur.nom','ordinateur.code','status']" [(selection)]="selectReservation" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Reservations</h5>
+                <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search..." />
+                    </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="utilisateur">Utilisateur
+                    <p-sortIcon field="utilisateur"></p-sortIcon>
+                </th>
+                <!-- <th>Image</th> -->
+                <th pSortableColumn="ordinateur">Ordinateur
+                    <p-sortIcon field="ordinateur"></p-sortIcon>
+                </th>
+                <th pSortableColumn="datedebut">Date de debut
+                    <p-sortIcon field="datedebut"></p-sortIcon>
+                </th>
+                <th pSortableColumn="datefin">Date de fin
+                    <p-sortIcon field="datefin"></p-sortIcon>
+                </th>
+                <th pSortableColumn="status">Status
+                    <p-sortIcon field="status"></p-sortIcon>
+                </th>
+
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-reservation>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="reservation"></p-tableCheckbox>
+                </td>
+                <td>{{reservation.utilisateur.nom}}</td>
+                <td>{{reservation.ordinateur.code }}</td>
+                <td>{{reservation.dateDebutReservation|date:'dd/MM/yyyy'}}</td>
+                <td>{{reservation.dateFinReservation|date:'dd/MM/yyyy'}}</td>
+
+                <td>{{reservation.status}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="updateReservationForm(reservation.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="showDialog(reservation.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                le total est: {{reservationlist ? size: 0 }} ReservationS.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<p-dialog header="Suppression" [(visible)]="display" [modal]="true">
+    Etes-vous sur de vouloir supprimer cet élement
+    <button pButton pRipple type="button" label="Oui" class="p-button-rounded p-button-danger" (click)="deleteReservation(reservationdelete.id)" routerLinkActive="active"></button>
+    <button pButton pRipple type="button" label="Non" class="p-button-rounded p-button-cancel" (click)="display=false" routerLinkActive="active"></button>
+
+</p-dialog>

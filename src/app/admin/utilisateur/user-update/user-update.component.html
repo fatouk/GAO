@@ -1,0 +1,101 @@
+<p-toast key="tc" position="top-center"></p-toast>
+<p-fieldset legend="Modification Utilisateur!">
+    <form *ngIf="user && userUpdateForm" [formGroup]="userUpdateForm">
+        <div class="p-fluid p-grid">
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Nom</label>
+                    <input id="float-input" formControlName="nom" required maxlength="240" type="text" class="form-control" id="nom" name="nom" pInputText [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                    <div class="alert alert-danger" *ngIf="(submitted || nom!.touched && nom!.errors)">
+                        <div class="required" *ngIf="nom!.errors?.required">Nom est requis</div>
+                        <div class="required" *ngIf="nom!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Prénom</label>
+                    <input type="text" name="prenom" pInputText formControlName="prenom" class="form-control" required maxlength="240">
+                    <div class="alert alert-danger" *ngIf="(submitted || prenom!.touched && prenom!.errors)">
+                        <div class="required" *ngIf="prenom!.errors?.required">Prenom est requis</div>
+                        <div class="required" *ngIf="prenom!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Email</label>
+                    <input id="float-input" type="text" formControlName="email" required maxlength="240" class="form-control" id="email" name="email" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || email!.touched && email!.errors)">
+                        <div class="required" *ngIf="email!.errors?.required">Email est requis</div>
+                        <div class="required" *ngIf="email!.errors?.pattern">Veuillez saisir une adresse mail valide</div>
+                        <div class="required" *ngIf="email!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Login</label>
+                    <input id="float-input" type="text" formControlName="login" required maxlength="240" class="form-control" id="login" name="login" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || login!.touched && login!.errors)">
+                        <div class="required" *ngIf="login!.errors?.required">Login est requis</div>
+                        <div class="required" *ngIf="login!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Mot de passe</label>
+                    <input id="float-input" type="password" formControlName="password" required maxlength="240" class="form-control" id="password" name="password" pPassword>
+                    <div class="alert alert-danger" *ngIf="(submitted || password!.touched && password!.errors)">
+                        <div class="required" *ngIf="password!.errors?.required">Mot de passe</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Téléphone</label>
+                    <input id="float-input" type="tel" formControlName="telephone" required maxlength="240" class="form-control" id="telephone" name="telephone" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || telephone!.touched && telephone!.errors)">
+                        <div class="required" *ngIf="telephone!.errors?.required">Téléphone est requis</div>
+                        <div class="required" *ngIf="telephone!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Date de naissance</label>
+                    <p-calendar for="float-input" formControlName="datenais" [showIcon]="true" inputId="icon" [required]="true" dateFormat='dd/mm/yy' id="datenais" name="datenais"></p-calendar>
+                    <div class="alert alert-danger" *ngIf="(submitted || datenais!.touched && datenais!.errors)">
+                        <div class="required" *ngIf="datenais!.errors?.required">Date de naissance est requise</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Etat</label>
+                    <p-checkbox formControlName="etat" class="form-control2" [binary]="true" id="etat" name="etat"></p-checkbox>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Profil</label>
+                    <p-dropdown id="float-input" formControlName="profil" name="profil" [options]="profillist" class="form-control form-control2" placeholder="Selectionner Profil" [showClear]="true"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <button pButton pRipple type="button" label="Valider" (click)="updateUser(user.id,user)" class="p-button-rounded" style="background: #ff7900;border: #FF7900;"></button>
+</p-fieldset>

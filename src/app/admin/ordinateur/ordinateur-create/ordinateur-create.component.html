@@ -1,0 +1,64 @@
+<p-toast key="tc" position="top-center"></p-toast>
+<p-fieldset legend="Création Ordinateur">
+    <form [formGroup]="ordinateurCreateForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-grid">
+            <!-- error en haut -->
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Code</label>
+                    <input id="float-input" type="text" formControlName="code" required maxlength="240" class="form-control" id="code" name="code" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || code!.touched && code!.errors)">
+                        <div class="required" *ngIf="code!.errors?.required">Code est requis</div>
+                        <div class="required" *ngIf="code!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Marque</label>
+                    <input id="float-input" type="text" formControlName="marque" required maxlength="240" class="form-control" id="marque" name="marque" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || marque!.touched && marque!.errors)">
+                        <div class="required" *ngIf="marque!.errors?.required">Marque est requise</div>
+                        <div class="required" *ngIf="marque!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Taille Disque</label>
+                    <input id="float-input" type="text" formControlName="capacite_disque" required maxlength="240" class="form-control" id="capacite_disque" name="capacite_disque" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || capacite_disque!.touched && capacite_disque!.errors)">
+                        <div class="required" *ngIf="capacite_disque!.errors?.required">Capacite est requise</div>
+                        <div class="required" *ngIf="capacite_disque!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Taille RAM</label>
+                    <input id="float-input" type="text" formControlName="ram" required maxlength="240" class="form-control" id="ram" name="ram" pInputText>
+                    <div class="alert alert-danger" *ngIf="(submitted || ram!.touched && ram!.errors)">
+                        <div class="required" *ngIf="ram!.errors?.required">RAM est requis</div>
+                        <div class="required" *ngIf="ram!.errors?.maxlength">Le nombre de caractères est depassé</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Etat</label>
+                    <p-checkbox formControlName="etat" class="form-control2" [binary]="true" id="etat" name="etat"></p-checkbox>
+                </div>
+            </div>
+
+        </div>
+        <button pButton pRipple type="button" label="Valider" (click)="onSubmit()" class="p-button-rounded" style="background: #ff7900;border:#FF7900;"></button>
+        <button pButton pRipple type="button" label="Annuler" class="p-button-rounded" routerLink="../ordinateurListe" routerLinkActive="active" style="margin-top: 7px;background: black;border:black; margin-left: 3px;"></button>
+    </form>
+</p-fieldset>

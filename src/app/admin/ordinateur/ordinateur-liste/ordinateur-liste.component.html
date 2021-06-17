@@ -1,0 +1,84 @@
+<p-toast key="tc" position="top-center"></p-toast>
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="createOrdinateurForm()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="showDialog(ordinateurdelete.id)" [disabled]="!selectOrdinateur || !selectOrdinateur.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="ordinateurlist" [rows]="10" [paginator]="true" [globalFilterFields]="['code','ram','status','marque']" [(selection)]="selectOrdinateur" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Ordinateurs</h5>
+                <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search..." />
+                    </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <!-- <p-tableHeaderCheckbox></p-tableHeaderCheckbox> -->
+
+                </th>
+                <th pSortableColumn="code">Code
+                    <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <!-- <th>Image</th> -->
+                <th pSortableColumn="ram">Taille RAM
+                    <p-sortIcon field="ram"></p-sortIcon>
+                </th>
+                <th pSortableColumn="capacite_disque">Capacite Disque
+                    <p-sortIcon field="capacite_disque"></p-sortIcon>
+                </th>
+                <th pSortableColumn="marque">Marque
+                    <p-sortIcon field="marque"></p-sortIcon>
+                </th>
+                <th pSortableColumn="status">Status
+                    <p-sortIcon field="status"></p-sortIcon>
+                </th>
+
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ordinateur>
+            <tr>
+                <td>
+                    <!-- <p-tableCheckbox [value]="ordinateur"></p-tableCheckbox> -->
+                    <i *ngIf="ordinateur.status==='OCCUPE'" title="Ordinateur Occupé" class="pi pi-spin pi-circle-on" style="font-size: 2rem ;color: red;"></i>
+                    <i *ngIf="ordinateur.status==='LIBRE'" title="Ordinateur Disponible" class="pi pi-spin pi-circle-on" style="font-size: 2rem ;color: green;"></i>
+                </td>
+                <td>{{ordinateur.code}}</td>
+                <td>{{ordinateur.ram }}</td>
+                <td>{{ordinateur.capacite_disque}}</td>
+                <td>{{ordinateur.marque}}</td>
+                <td>
+                    {{ordinateur.status}}
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="updateOrdinateurForm(ordinateur.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="showDialog(ordinateur.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                total est {{ordinateurlist ? size: 0 }} Ordinateurs.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<p-dialog header="Suppression" [(visible)]="display" [modal]="true">
+    Etes-vous sur de vouloir supprimer cet élement
+    <button pButton pRipple type="button" label="Oui" class="p-button-rounded p-button-danger" (click)="deleteUser(ordinateurdelete.id)" routerLinkActive="active"></button>
+    <button pButton pRipple type="button" label="Non" class="p-button-rounded p-button-cancel" (click)="display=false" routerLinkActive="active"></button>
+
+</p-dialog>

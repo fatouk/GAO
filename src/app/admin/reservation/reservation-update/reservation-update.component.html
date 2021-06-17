@@ -1,0 +1,61 @@
+<p-fieldset legend="Modification Reservation!">
+    <form *ngIf="reservation && reservationUpdateForm" [formGroup]="reservationUpdateForm">
+        <div class="p-fluid p-grid">
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Utilisateur*</label>
+                    <p-dropdown *ngIf="utilisateurlist" id="float-input" formControlName="utilisateur1" name="utilisateur" [required]="true" [options]="utilisateurlist" class="form-control form-control2" placeholder="Selectionner Utilisateur" [showClear]="true"></p-dropdown>
+                    <!-- <div class="alert alert-danger" *ngIf="(submitted || utilisateur!.touched && utilisateur!.errors)">
+                        <div class="required" *ngIf="utilisateur!.errors?.required">Utilisateur est requis</div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Ordinateur*</label>
+                    <p-dropdown id="float-input" formControlName="ordinateur1" name="ordinateur" [required]="true" [options]="ordinateurlist" class="form-control form-control2" placeholder="Selectionner Ordinateur" [showClear]="true"></p-dropdown>
+
+                    <!-- <div class="alert alert-danger" *ngIf="(submitted || ordinateur!.touched && ordinateur!.errors)">
+                        <div class="required" *ngIf="ordinateur!.errors?.required">Ordinateur est requis</div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Date de debut*</label>
+                    <p-calendar id="float-input" formControlName="dateDebutReservation" [showButtonBar]="true" [showIcon]="true" [required]="true" dateFormat="dd/mm/yy" class="form-control form-control2" id="dateDebutReservation" name="dateDebutReservation"></p-calendar>
+                    <div class="alert alert-danger" *ngIf="(submitted || dateDebutReservation!.touched && dateDebutReservation!.errors)">
+                        <div class="required" *ngIf="dateDebutReservation!.errors?.required">Date de debut est requise</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Date de fin*</label>
+                    <p-calendar id="float-input" formControlName="dateFinReservation" [showButtonBar]="true" [showIcon]="true" [required]="true" dateFormat="dd/mm/yy" class="form-control form-control2" id="dateFinReservation" name="dateFinReservation"></p-calendar>
+                    <div class="alert alert-danger" *ngIf="(submitted || dateFinReservation!.touched && dateFinReservation!.errors)">
+                        <div class="required" *ngIf="dateFinReservation!.errors?.required">Date de fin est requise</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Etat</label>
+                    <p-checkbox formControlName="etat" class="form-control2" [binary]="true" id="etat" name="etat"></p-checkbox>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="float-input" class="col-sm-3 col-form-label">Status</label>
+                    <p-dropdown id="float-input" formControlName="status" name="status" [options]="statuslist" class="form-control form-control2" placeholder="Selectionner Status" [showClear]="true"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <button pButton pRipple type="button" label="Valider" (click)="updateReservation(reservation.id,reservation)" class="p-button-rounded" style="background: #ff7900;border: #FF7900;"></button>
+</p-fieldset>
