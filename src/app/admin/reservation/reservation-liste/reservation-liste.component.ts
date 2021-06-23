@@ -29,29 +29,16 @@ export class ReservationListeComponent implements OnInit {
       
      }
 
-  ngOnInit(): void {
-    // this.currentuser=this.auth.currentUser;
-    // this.checkUser();
-      this.loadReservation();
-    }
-  // checkUser(){
-  //   if(this.currentuser===undefined || this.currentuser===null){
-  //     this.router.navigate(['login']);
-  //   }else{
-  //     if(this.currentuser){
-  //       this.droit=this.currentuser.profil===Dico.SUPERADMIN;
-  //     }
-  //   }
-      
-  // }
+ async ngOnInit() {    
+      await this.loadReservation();
+     }
+  
   async loadReservation() {
-    this.reservationlist = [];
-     await this.reservationService.getReservations().subscribe(data => {
-      console.log("getReservation===================" + JSON.stringify(data));
+     this.reservationlist = [];
+     const data=await this.reservationService.getReservations().toPromise();
       this.reservationlist = data;
       this.size=data.length;
-      }, error => console.log(error));
-    }
+        }
   async showDialog(id:number) {
     this.reservationdelete=new Reservation();
     this.id=this.activatedroute.snapshot.params['id'];

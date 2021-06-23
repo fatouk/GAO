@@ -3,11 +3,11 @@
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="createReservationForm()"></button>
-            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="showDialog(reservationdelete.id)" [disabled]="!selectReservation || !selectReservation.length"></button>
+            <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="showDialog(reservationdelete.id)" [disabled]="!selectReservation || !selectReservation.length"></button> -->
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload> -->
             <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
         </ng-template>
     </p-toolbar>
@@ -26,7 +26,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    <!-- <p-tableHeaderCheckbox></p-tableHeaderCheckbox> -->
                 </th>
                 <th pSortableColumn="utilisateur">Utilisateur
                     <p-sortIcon field="utilisateur"></p-sortIcon>
@@ -51,7 +51,9 @@
         <ng-template pTemplate="body" let-reservation>
             <tr>
                 <td>
-                    <p-tableCheckbox [value]="reservation"></p-tableCheckbox>
+                    <!-- <p-tableCheckbox [value]="reservation"></p-tableCheckbox> -->
+                    <i *ngIf="reservation.status==='ENCOURS'" title="Reservation ENCOURS" class="pi pi-spin pi-circle-on" style="font-size: 2rem ;color: red;"></i>
+                    <i *ngIf="reservation.status==='TERMINE'" title="Reservation TERMINE" class="pi pi-spin pi-circle-on" style="font-size: 2rem ;color: green;"></i>
                 </td>
                 <td>{{reservation.utilisateur.nom}}</td>
                 <td>{{reservation.ordinateur.code }}</td>

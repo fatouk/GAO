@@ -32,6 +32,10 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown'
 import {FieldsetModule} from 'primeng/fieldset';
 import {DialogModule} from 'primeng/dialog';
+import {ChartModule} from 'primeng/chart';
+
+
+
   
 
 @NgModule({
@@ -67,7 +71,7 @@ import {DialogModule} from 'primeng/dialog';
     ReactiveFormsModule,
     DropdownModule,
     FieldsetModule,
-    DialogModule
+    DialogModule,ChartModule
 
     
   ],

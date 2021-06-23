@@ -13,8 +13,7 @@ export class ReservationService {
   constructor(private http:HttpClient,private constSrv:ConstService,private apiService:ApiService) {
     this.url=this.constSrv.getBaseUrl;
    }
-getReservations():Observable<Reservation[]>{
-  
+getReservations():Observable<Reservation[]>{  
     return this.http.get<Reservation[]>(this.url+"listReservation");
   }
   getReservationByid(id:number){

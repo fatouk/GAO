@@ -90,10 +90,10 @@ if (this.valueOfForm.dateDebutReservation > this.valueOfForm.dateFinReservation)
    return;
 }
 this.submitted=true;
-await this.reservationService.createReservation(this.valueOfForm).subscribe(data=>console.log(data),error=>console.log(error));
+await this.reservationService.createReservation(this.valueOfForm).toPromise();
 this.reservation=new Reservation();
-this.redirectTo('reservationListe');
-// this.route.navigate(['reservationListe']);
+// this.redirectTo('reservationListe');
+this.route.navigate(['reservationListe']);
 
 }
 

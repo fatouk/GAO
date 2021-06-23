@@ -25,7 +25,7 @@ export class UserListeComponent implements OnInit {
   constructor(private messageService: MessageService,private confirmationmessage:ConfirmationService, private userService: UtilisateurService,
      private router: Router,private activatedroute:ActivatedRoute) { 
       //  this.currentuser=this.auth.currentUser;
-      this.loadUsers();
+      // this.loadUsers();
      }
 
   ngOnInit(): void {
@@ -43,10 +43,10 @@ export class UserListeComponent implements OnInit {
   //   }
       
   // }
-  loadUsers() {
+  async loadUsers() {
     this.userlist = [];
-    this.userService.getUsers().subscribe(data => {
-      console.log("getUsers===================" + JSON.stringify(data));
+   await this.userService.getUsers().subscribe(data => {
+      console.log("getUsers dans users===================" + JSON.stringify(data));
       this.userlist = data;this.size=data.length;
       }, error => console.log(error));
     }
@@ -54,7 +54,7 @@ export class UserListeComponent implements OnInit {
     this.userdelete=new Utilisateur();
     this.id=this.activatedroute.snapshot.params['id'];
     this.userdelete= await this.userService.getUserByid(id).toPromise();
-    console.log("id========"+ this.userdelete.id)
+    // console.log("id========"+ this.userdelete.id)
     this.display = true;
     }
    

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccueilComponent } from './admin/accueil/accueil.component';
 import { OrdinateurCreateComponent } from './admin/ordinateur/ordinateur-create/ordinateur-create.component';
 import { OrdinateurListeComponent } from './admin/ordinateur/ordinateur-liste/ordinateur-liste.component';
 import { OrdinateurUpdateComponent } from './admin/ordinateur/ordinateur-update/ordinateur-update.component';
@@ -11,7 +12,8 @@ import { UserListeComponent } from './admin/utilisateur/user-liste/user-liste.co
 import { UserUpdateComponent } from './admin/utilisateur/user-update/user-update.component';
 
 const routes: Routes = [
-{path: 'accueil',redirectTo:"index.html" },
+// {path: 'accueil',redirectTo:"index.html" },
+{path: 'accueil',component:AccueilComponent },
 {path: '',component:UserListeComponent},
 {path:'userListe',component:UserListeComponent},
 {path:'userUpdate/:id',component:UserUpdateComponent},

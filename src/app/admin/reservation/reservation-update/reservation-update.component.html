@@ -4,7 +4,7 @@
             <div class="form-group">
                 <div class="p-field p-col-12 p-md-4">
                     <label for="float-input" class="col-sm-3 col-form-label">Utilisateur*</label>
-                    <p-dropdown *ngIf="utilisateurlist" id="float-input" formControlName="utilisateur1" name="utilisateur" [required]="true" [options]="utilisateurlist" class="form-control form-control2" placeholder="Selectionner Utilisateur" [showClear]="true"></p-dropdown>
+                    <p-dropdown id="float-input" formControlName="utilisateur" name="utilisateur" [options]="utilisateurlist" class="form-control form-control2" placeholder="Selectionner Utilisateur" [showClear]="true"></p-dropdown>
                     <!-- <div class="alert alert-danger" *ngIf="(submitted || utilisateur!.touched && utilisateur!.errors)">
                         <div class="required" *ngIf="utilisateur!.errors?.required">Utilisateur est requis</div>
                     </div> -->
@@ -14,7 +14,7 @@
             <div class="form-group">
                 <div class="p-field p-col-12 p-md-4">
                     <label for="float-input" class="col-sm-3 col-form-label">Ordinateur*</label>
-                    <p-dropdown id="float-input" formControlName="ordinateur1" name="ordinateur" [required]="true" [options]="ordinateurlist" class="form-control form-control2" placeholder="Selectionner Ordinateur" [showClear]="true"></p-dropdown>
+                    <p-dropdown id="float-input" formControlName="ordinateur" name="ordinateur" [options]="ordinateurlist" class="form-control form-control2" placeholder="Selectionner Ordinateur" [showClear]="true"></p-dropdown>
 
                     <!-- <div class="alert alert-danger" *ngIf="(submitted || ordinateur!.touched && ordinateur!.errors)">
                         <div class="required" *ngIf="ordinateur!.errors?.required">Ordinateur est requis</div>
